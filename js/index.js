@@ -9,4 +9,3 @@ function changeInput() {
     }
 }
 
-console.log('Hello World!');
