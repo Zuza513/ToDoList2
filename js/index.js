@@ -8,3 +8,5 @@ function changeInput() {
         toDoButton.style.display = "inline";
     }
 }
+
+console.log('Hello World!');
