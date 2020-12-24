@@ -9,7 +9,8 @@
 
 html {
     min-height: 100%;
-    background-image: linear-gradient(#71b0d2, #3be7bc);
+    /* background-image: linear-gradient(#71b0d2, #3be7bc); */
+    background-image: linear-gradient(#d80606, #5d0070);
     background-size: cover;
     background-repeat: no-repeat;
 }
