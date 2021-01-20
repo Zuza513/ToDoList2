@@ -1,3 +1,21 @@
+window.onload = function() {
+    const todos = JSON.parse(localStorage.getItem("todos") || '[]' );
+    const toDoListContainer = document.getElementById("toDoListContainer");
+
+    for (let i = 0; i < todos.length; i++){
+        const id = todos[i].id;
+        const todo = todos[i].todo;
+
+        toDoListContainer.innerHTML +=
+        ` <div class="toDoContainer" id="toDoContainer${id}">
+        <button class="toDoButton" id="toDoButton${id}" onclick="deleteTodo(${id})">x</button>
+        <input type="checkbox" class="toDoCheckbox" id="toDoCheckbox${id}" onchange="changeCheckbox(${id})">
+        <label class="toDoLabel" id="toDoLabel${id}">${toDoInput.value}</label>
+    </div>`
+
+    }
+}
+
 function changeInput(event) {
     const toDoInput = document.getElementById("toDoInput");
     const toDoButton = document.getElementById("inputButton")
@@ -26,19 +44,36 @@ function addTodo() {
             <label class="toDoLabel" id="toDoLabel${toDoContainers.length + 1}">${toDoInput.value}</label>
         </div>`
 
-        toDoInput.value = '';
-        inputButton.style.display = 'none';
+
+        // todos = [
+         //  {id: 1, todo: "jakies zadanie", done: true},
+         // {id: 2, todo: " drugie jakies", done: true },
+         // {id: 3, todo: " drugie jakies", done: true },
+         // {id: 3, todo: " drugie jakies", done: true },
+        //]
 
         const todos = JSON.parse(localStorage.getItem("todos") || "[]");
+        let currentIndex;
 
-        todos.push({id: 1, todo:"Tekst", done: false});
+        if(todos.length == 0) {
+            currentIndex = 0;
+        } else {
+            currentIndex = todos[todos.length -1].id;
+                }
+
+        todos.push({id: currentIndex + 1, todo: toDoInput.value, done: false});
 
         localStorage.setItem("todos", JSON.stringify(todos));
+
+        toDoInput.value = '';
+        inputButton.style.display = 'none';
 }
 
 function deleteTodo(id) {
     const container = document.getElementById(`toDoContainer${id}`);
     container.remove();
+
+    const todos = JSON.parse(localStorage.getItem('todos'));
 }
 
 function changeCheckbox(id) {
